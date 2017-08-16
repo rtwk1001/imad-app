@@ -1,14 +1,19 @@
 console.log('Loaded!');
-var img=document.getElementById("madi");
-var marginleft=0;
-function moveRight(){
-    while(marginleft<=500){
-    marginleft+=1;
+
+var button=document.getElementById("counter");
+var span=document.getElementById("count");
+var counter=0;
+button.onclick=function(){
     
-    img.style.marginLeft=marginleft+"px";}
+    var request= new XMLHttpRequest();
+     request.onreadystatechange=function(){
+         if(request.readystate===XMLHttpRequest.DONE)
+         if(request.status===200){
+         var counter=request.responseText;
+          span.innerHtml=counter.toString();   
+         }
+     };
     
-}
-img.onclick=function(){
-    var interval=setInterval(moveRight,500);
-    
+    request.open("GET","http://rtwk1001.imad.hasura-app.io/counter",true);
+    request.send(null);
 };
