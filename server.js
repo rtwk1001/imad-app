@@ -56,15 +56,15 @@ function createTemplet(data){
         </div>
         <hr/>
         <div class="heading">
-            <h2>$(heading)</h2>;
+            <h2>${heading}</h2>;
             <p>welcome to your detail page</p>
             </div>
             <div class= "details">
                 <table border="0">
-                    <tr><td>Name:</td><td>$(name)</td></tr>
-                     <tr><td>age:</td><td>$(age)</td></tr>
-                      <tr><td>gender:</td><td>$(gender)</td></tr>
-                       <tr><td>city:</td><td>$(city)</td></tr>
+                    <tr><td>Name:</td><td>${name}</td></tr>
+                     <tr><td>age:</td><td>${age}</td></tr>
+                      <tr><td>gender:</td><td>${gender}</td></tr>
+                       <tr><td>city:</td><td>${city}</td></tr>
                 </table>
                 
                 
