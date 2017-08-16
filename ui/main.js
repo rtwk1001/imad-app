@@ -20,3 +20,5 @@ button.onclick=function(){
     request.open('GET',"http://rtwk1001.imad.hasura-app.io/counter",true);
     request.send(null);
 };
+var submit=document.getElementById("submit-res");
+var text=document.getElementById("name");
