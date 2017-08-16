@@ -36,4 +36,8 @@ body {
 }
 .links{
     background-color:#ffffcc;
+    max-width:800px;
+    padding-left:30px;
+    padding-right:30px;
+    
 }
