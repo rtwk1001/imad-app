@@ -11,10 +11,12 @@ button.onclick=function(){
          if(request.status===200){
          var counter=request.responseText;
          var span=document.getElementById("count");
-          span.innerHtml=counter.toString();   
-         }}
+          span.innerHTML=counter.toString();   
+         }
+             
+         }
      };
     
-    request.open("GET","http://rtwk1001.imad.hasura-app.io/counter",true);
+    request.open('GET',"http://rtwk1001.imad.hasura-app.io/counter",true);
     request.send(null);
 };
