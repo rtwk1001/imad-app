@@ -16,8 +16,9 @@ app.get('/ui/style.css', function (req, res) {
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
-app.get('/personone', function (req, res) {
-  res.send(createTemplet(personone));
+app.get('/:personName', function (req, res) {
+   var personName=req.params.personName;
+  res.send(createTemplet(persons[personName]));
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
@@ -27,7 +28,8 @@ var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
-var personone={
+var persons={
+    'person-one':{
     title:"person1",
     heading:"hello! Thats your personal details portal",
     name:"Ritwik Jain",
@@ -36,6 +38,27 @@ var personone={
     city:"Bangalore"
     
     
+},
+    'person-two':{
+    title:"person2",
+    heading:"hello! Thats your personal details portal",
+    name:"shivani brajwasi",
+    age:"21",
+    gender:"female",
+    city:"Bangalore"
+    
+    
+},
+'person-three':{
+    title:"person3",
+    heading:"hello! Thats your personal details portal",
+    name:"Devesh upadhyay",
+    age:"22",
+    gender:"male",
+    city:"Bangalore"
+    
+    
+}
 };
 function createTemplet(data){
     var title=data.title;
