@@ -13,9 +13,9 @@ app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 var count=0;
-app.get('/ui/counter',function(req,res){
-    count++;
-    res.send(count);
+app.get('/counter',function(req,res){
+    count=count+1;
+    res.send(count.toString());
 });
 app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
