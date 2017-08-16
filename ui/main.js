@@ -1,5 +1,5 @@
 console.log('Loaded!');
-var img=document.getElementById('madi');
+var img=document.getElementById("madi");
 var marginleft=0;
 function moveRight(){
     while(margin<=50){
