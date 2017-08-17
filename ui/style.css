@@ -20,6 +20,7 @@ body {
     height: 200px;
 }
 .container {
+    border-style:solid;
     border-width:2px;
     border-color:#ffffff;
     max-width:800px;
