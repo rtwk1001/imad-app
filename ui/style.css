@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: grey;
+    background-color:#222222;
     margin-top: 75px;
 }
 
@@ -20,9 +20,11 @@ body {
     height: 200px;
 }
 .container {
+    border-width:2px;
+    border-color:#ffffff;
     max-width:800px;
     margin:0 auto;
-    color:#aaaaaa;
+    color:#222222;
     font-family:sans-serif;
     padding-left:20px;
     padding-right:20px;
@@ -35,10 +37,13 @@ body {
     background-color:#ffffcc;
 }
 .links{
-    background-color:#ffffcc;
+    border-width:2px;
+    
+    background-color:#ffffff;
     text-align:center;
     max-width:500px;
     margin:0 auto;
+    color:#222222;
     padding-left:60px;
     padding-right:30px;
     
