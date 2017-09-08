@@ -47,9 +47,20 @@ app.get('/submit-name', function (req, res) {
    names.push(name);
   res.send(JSON.stringify(names));
 });
-app.get('/:personName', function (req, res) {
+app.get('/persons/:personName', function (req, res) {
    var personName=req.params.personName;
-  res.send(createTemplet(persons[personName]));
+   pool.query("Select * from persons where title='"+req.params.personName+"'",function(err,result){
+       if(err)
+       res.status(500).send(err.toString());
+       else{
+           if(result.rows.length===0)
+           res.status(404).send("NOT FOUND");
+           else
+           { var personData=result.rows[0];
+            res.send(createTemplet(personData));}
+       }
+   });
+
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
