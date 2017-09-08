@@ -49,7 +49,7 @@ app.get('/submit-name', function (req, res) {
 });
 app.get('/persons/:personName', function (req, res) {
    var personName=req.params.personName;
-   pool.query("Select * from persons where title='"+req.params.personName+"'",function(err,result){
+   pool.query("Select * from persons where title=$1"[req.params.personName],function(err,result){
        if(err)
        res.status(500).send(err.toString());
        else{
