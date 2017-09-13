@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var Pool=require('pg').Pool;
+var crypto=require('crypto');
 var config={
     user:'rtwk1001',
     database:'rtwk1001',
@@ -62,7 +63,13 @@ app.get('/persons/:personName', function (req, res) {
    });
 
 });
-
+function hash(input, salt){
+    var hashed =crpto.pbkdf2Sync(input,salt,10000,512,'sha512');
+    return hashed.toString('hex');
+}
+app.get('/hash/:input',function(req,res){
+    var hashstring=hash(req.param.input,'some-random-string');
+});
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
@@ -70,38 +77,7 @@ var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
-var persons={
-    'person-one':{
-    title:"person1",
-    heading:"hello! Thats your personal details portal",
-    name:"Ritwik Jain",
-    age:"22",
-    gender:"male",
-    city:"Bangalore"
-    
-    
-},
-    'person-two':{
-    title:"person2",
-    heading:"hello! Thats your personal details portal",
-    name:"shivani brajwasi",
-    age:"21",
-    gender:"female",
-    city:"Bangalore"
-    
-    
-},
-'person-three':{
-    title:"person3",
-    heading:"hello! Thats your personal details portal",
-    name:"Devesh upadhyay",
-    age:"22",
-    gender:"male",
-    city:"Bangalore"
-    
-    
-}
-};
+
 function createTemplet(data){
     var title=data.title;
     var heading=data.heading;
