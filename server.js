@@ -69,6 +69,7 @@ function hash(input, salt){
 }
 app.get('/hash/:input',function(req,res){
     var hashstring=hash(req.params.input,'some-random-string');
+    res.send(hashstring);
 });
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
