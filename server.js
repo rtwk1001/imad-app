@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 var Pool=require('pg').Pool;
 var crypto=require('crypto');
+var bodyParser=require('body-parser');
 var config={
     user:'rtwk1001',
     database:'rtwk1001',
@@ -13,9 +14,32 @@ var config={
 
 var app = express();
 app.use(morgan('combined'));
-
+app.use(bodyParser.json());
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+function hash(input, salt){
+    var hashed =crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
+    return hashed.toString('hex');
+}
+app.get('/hash/:input',function(req,res){
+    var hashstring=hash(req.params.input,'some-random-string');
+    res.send(hashstring);
+});
+app.get('/create-user',function(req,res){
+    var username=req.body.username;
+    var password=req.body.password;
+    var salt=crypto.randomBytes(128).toString('hex');
+    var dbstring=hash(password,salt);
+    pool.query('INSERT INTO "users" (username,password) VALUES ($1,$2)',[usrename,dbstring],function(err,result){
+          if(err)
+        res.status(500).send(err.toString());
+        else
+        res.send("User Succesfully created:"+username);
+        
+    });
+    
+    
 });
 var pool= new Pool(config);
 app.get('/test-db',function(req,res){
@@ -63,14 +87,7 @@ app.get('/persons/:personName', function (req, res) {
    });
 
 });
-function hash(input, salt){
-    var hashed =crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
-    return hashed.toString('hex');
-}
-app.get('/hash/:input',function(req,res){
-    var hashstring=hash(req.params.input,'some-random-string');
-    res.send(hashstring);
-});
+
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
