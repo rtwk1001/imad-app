@@ -22,8 +22,7 @@ submit.onclick=function(){
      };
      var username=document.getElementById("username").value;
          var password=document.getElementById("password").value;
-         consol.log(username);
-         consol.log(password);
+        
          
     request.open('POST',"http://rtwk1001.imad.hasura-app.io/login",true);
     request.setRequestHeader('content-type','application/json');
