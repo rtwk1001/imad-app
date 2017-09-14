@@ -20,26 +20,42 @@ app.get('/', function (req, res) {
 });
 function hash(input, salt){
     var hashed =crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
-    return hashed.toString('hex');
+    return ["pbkdg2","10000",salt,hashed.toString('hex')].join('$');
 }
 app.get('/hash/:input',function(req,res){
     var hashstring=hash(req.params.input,'some-random-string');
     res.send(hashstring);
 });
-app.get('/create-user',function(req,res){
+app.post('/create-user',function(req,res){
     var username=req.body.username;
     var password=req.body.password;
     var salt=crypto.randomBytes(128).toString('hex');
     var dbstring=hash(password,salt);
-    pool.query('INSERT INTO "users" (username,password) VALUES ($1,$2)',[usrename,dbstring],function(err,result){
+    pool.query('INSERT INTO "users" (username,password) VALUES ($1,$2)',[username,dbstring],function(err,result){
           if(err)
         res.status(500).send(err.toString());
         else
         res.send("User Succesfully created:"+username);
         
     });
-    
-    
+});
+app.post('/login',function(req,res){
+    var username=req.body.username;
+    var password=req.body.password;
+   
+    pool.query('SELECT * FROM "users" username=$1',[username],function(err,result){
+          if(err)
+        res.status(500).send(err.toString());
+        else{
+            if(result.rows.length===0)
+            res.status(403).send("username aur password Invalid");
+            else{
+                
+            }
+        }
+       
+        
+    });
 });
 var pool= new Pool(config);
 app.get('/test-db',function(req,res){
