@@ -83,7 +83,7 @@ app.get('/check-login',function(req,res){
 });
 app.get('/logout',function(req,res){
     delete req.session.auth;
-    re.send("You are logged out");
+    res.send("You are logged out");
 });
 
 
