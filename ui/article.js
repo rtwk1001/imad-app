@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // Eg: coco98.imad.hasura-app.io/articles/article-one will result in article-one
+=======
+>>>>>>> 547fede9a179ffcf3cf1744a1541fefc552f245f
 var currentArticleTitle = window.location.pathname.split('/')[2];
 
 function loadCommentForm () {
@@ -97,4 +100,8 @@ function loadComments () {
 
 // The first thing to do is to check if the user is logged in!
 loadLogin();
+<<<<<<< HEAD
 loadComments();
+=======
+loadComments();
+>>>>>>> 547fede9a179ffcf3cf1744a1541fefc552f245f
